@@ -1,7 +1,7 @@
-
 package test;
 
-import Connection.DBpendataan;
+import model.ModelLogin;
+import model.ModelUser;
 import swing.Button;
 import swing.MyPasswordField;
 import swing.MyTextField;
@@ -10,62 +10,33 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
-import test.Main;
 
-public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
+public class PanelLoginAndRegister extends javax.swing.JLayeredPane  {
 
-    String username;
-    String password;
-    String email;
-    DBpendataan con;
-    public PanelLoginAndRegister() {
+    public ModelLogin getDataLogin() {
+        return dataLogin;
+    }
+
+    public ModelUser getUser() {
+        return user;
+    }
+
+    private ModelUser user;
+    private ModelLogin dataLogin;
+
+    public PanelLoginAndRegister(ActionListener eventRegister, ActionListener eventLogin) {
         initComponents();
-        initRegister();
-        initLogin();
+        initRegister(eventRegister);
+        initLogin(eventLogin);
         login.setVisible(false);
         register.setVisible(true);
-        con = new DBpendataan();
-    }
-     public Boolean checkSignup(String email) throws SQLException{
-        String cekQuery = "select * from loginregister";
-        try{
-            ResultSet rs = DBpendataan.con.createStatement().executeQuery(cekQuery);
-            while(rs.next()){
-                if(email.equals(rs.getString("Email"))){
-                    return true;
-                }
-            }
-        }catch(SQLException e){
-            System.out.print(e.toString());
-        }
-        return false;
-        
-    }
-     
-       public Boolean check(String email, String password) throws SQLException{
-        String cekQuery = "select * from loginregister";
-        try{
-            ResultSet rs = DBpendataan.con.createStatement().executeQuery(cekQuery);
-            while(rs.next()){
-                if(email.equals(rs.getString("Email")) && password.equals(rs.getString("Password"))){
-                    return true;
-                }
-            }
-        }catch(SQLException e){
-            System.out.print(e.toString());
-        }
-        return false;
-        
     }
 
-    private void initRegister() {
+    private void initRegister(ActionListener eventRegister) {
         register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Create Account");
         label.setFont(new Font("sansserif", 1, 30));
@@ -85,78 +56,22 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         register.add(txtPass, "w 60%");
         Button cmd = new Button();
         cmd.setBackground(new Color(0, 204, 255));
-        cmd.setForeground(new Color(250, 250, 250));
+        cmd.setForeground(new Color(255, 255, 255));
+        cmd.addActionListener(eventRegister);
         cmd.setText("SIGN UP");
         register.add(cmd, "w 40%, h 40");
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               username = txtUser.getText();
-        password = txtPass.getText();
-        email = txtEmail.getText();
-//        if (!animatorLogin.isRunning()) {
-//            signUp = true;
-            boolean action = true;
-            if (username.equals("")) {
-//                txtUser.setHelperText("Please input username");
-                txtUser.grabFocus();
-                action = false;
-            }
-            if (email.equals("")) {
-//                textEmail.setHelperText("Please input email");
-                txtEmail.grabFocus();
-                action = false;
-            }
-            if (password.equals("")) {
-//                textPass.setHelperText("Please input password");
-                if (action) {
-                    txtPass.grabFocus();
-                }
-                action = false;
-            }
-        
-        if(password.length() < 8){
-            JOptionPane.showMessageDialog(null, "Password Minimal 8 Karakter", "Warning", JOptionPane.ERROR_MESSAGE);
-        }else{
-            String cekQuery = "select * from loginregister where username = '"+username+"' AND email = '"+email+"'";
-            try{
-             ResultSet rs = DBpendataan.con.createStatement().executeQuery(cekQuery);
-                if(checkSignup(email) == true){
-                    while(rs.next()){
-                    rs.getString("username");
-                    rs.getString("email");}
-                    JOptionPane.showMessageDialog(null, "Username Dan Email Sudah Ada!",  "Warning", JOptionPane.WARNING_MESSAGE);
-                }
-                     String query = "INSERT INTO `loginregister`(`username`, `email`, `password`) "
-                                + "VALUES ('"+username+"','"+email+"','"+password+"')";
-                    if(query.contains("@")){
-                    try{
-                        
-                        query.contains("@");
-                        con.getSt().execute(query);
-                         JOptionPane.showMessageDialog(null, "Register Berhasil");
-                    }catch(SQLException ex){
-                        JOptionPane.showMessageDialog(null, "Register  Gagal");
-                    
-                    }
-                }else{
-                       JOptionPane.showMessageDialog(null, "Email Tidak Mengandung @!",  "Warning", JOptionPane.WARNING_MESSAGE);
-
-                }
-                    
-                    
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null, "Error");
-                System.out.print(ex.toString());
-            }
-        }
+                String userName = txtUser.getText();
+                String email = txtEmail.getText();
+                String password = String.valueOf(txtPass.getPassword());
+                user = new ModelUser(0, userName, email, password);
             }
         });
     }
-                
-    
 
-    private void initLogin() {
+    private void initLogin(ActionListener eventLogin) {
         login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Sign In");
         label.setFont(new Font("sansserif", 1, 30));
@@ -179,42 +94,15 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         Button cmd = new Button();
         cmd.setBackground(new Color(0, 204, 255));
         cmd.setForeground(new Color(250, 250, 250));
+        cmd.addActionListener(eventLogin);
         cmd.setText("SIGN IN");
         login.add(cmd, "w 40%, h 40");
-         cmd.addActionListener(new ActionListener() {
+        cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                email = txtEmail.getText().trim();
-                password = String.valueOf(txtPass.getPassword());
-//                username =txtUser.getText();
-        String cekQuery = "select * from loginregister";
-            try {
-                ResultSet rs = DBpendataan.con.createStatement().executeQuery(cekQuery);
-                    if(check(email, password) == true){
-                        String nama = "" ;
-                        while(rs.next()){
-                            nama = rs.getString("username");
-                        }
-                                    boolean action = true;
-                     
-                                    if (email.equals("")) {
-                                        txtEmail.grabFocus();
-                                        action = false;
-                                    }
-                                    if (password.equals("")) {
-                                        if (action) {
-                                            txtPass.grabFocus();
-                                        }
-                                        action = false;
-                                    }
-                                    Main log = new Main();
-                                    log.setVisible(true);
-                    }else if(check(email, password) == false){
-                    JOptionPane.showMessageDialog(null, "Masukkan email dan password dengan benar", "Login", JOptionPane.ERROR_MESSAGE);
-                    }
-            } catch (SQLException ex) {
-                System.out.print(ex.toString());
-            }
+                String email = txtEmail.getText().trim();
+                String password = String.valueOf(txtPass.getPassword());
+                dataLogin = new ModelLogin(email, password);
             }
         });
     }

@@ -1,6 +1,5 @@
 package test;
 
-import Connection.DBpendataan;
 import swing.ButtonOutLine;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,14 +24,14 @@ public class PanelCover extends javax.swing.JPanel {
     private JLabel description1;
     private ButtonOutLine button;
     private boolean isLogin;
-    DBpendataan con;
+
     public PanelCover() {
         initComponents();
         setOpaque(false);
         layout = new MigLayout("wrap, fill", "[center]", "push[]25[]10[]25[]push");
         setLayout(layout);
         init();
-        con = new DBpendataan();
+
     }
 
     private void init() {
@@ -78,7 +77,7 @@ public class PanelCover extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
-        GradientPaint gra = new GradientPaint(0, 0, new Color(0, 204, 255), 0, getHeight(), new Color(153, 204, 255));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(52, 204, 255), 0, getHeight(), new Color(153, 204, 255));
         g2.setPaint(gra);
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
@@ -120,10 +119,10 @@ public class PanelCover extends javax.swing.JPanel {
         layout.setComponentConstraints(description1, "pad 0 " + v + "% 0 " + v + "%");
     }
 
-    public void login(boolean login) {
+    private void login(boolean login) {
         if (this.isLogin != login) {
             if (login) {
-                title.setText("hello, Friend!");
+                title.setText("Hello, Friend!");
                 description.setText("Enter your personal details");
                 description1.setText("and start journey with us");
                 button.setText("SIGN UP");
