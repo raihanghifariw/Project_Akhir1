@@ -29,7 +29,7 @@ public class DatabaseConnection {
 
     public void connectToDatabase() throws SQLException {
        try{
-            String url = "jdbc:mysql://localhost:3306/project_akhir";
+            String url = "jdbc:mysql://localhost:3306/flystay";
             String user = "root";
             String pass = "";
             connection = DriverManager.getConnection(url,user,pass);

@@ -4,24 +4,54 @@
  */
 package test;
 
-import com.formdev.flatlaf.FlatIntelliJLaf;
+import Connection.DatabaseConnection;
+import java.sql.*;
 import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
  * @author DELL
  */
 public class hotelFlight2 extends javax.swing.JFrame {
-
+    String datepa, dateNow;
+    private final Connection con;
     /**
      * Creates new form TransparentFrame
      */
     public hotelFlight2() {
         initComponents();
+        con = DatabaseConnection.getInstance().getCon();
+        dewasaHot.setValue(1);
+        Dewasa.setValue(1);
+        LocalDateTime now = LocalDateTime.now();
+        String sDate = now.toString();
+        Date date1;
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate);
+            dateNow = date1.toString().substring(4,7);
+            datepa = date1.toString().substring(8,10);
+            departuree.setDate(date1);
+            departureHot.setDate(date1);
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(hotelFlight2.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setLocationRelativeTo(null);
         this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
        jPanel1.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
        materialTabbed2.setVisible(false);
+       ((SpinnerNumberModel) dewasaHot.getModel()).setMinimum(0);
+       ((SpinnerNumberModel) anakHot.getModel()).setMinimum(0);
+       ((SpinnerNumberModel) Dewasa.getModel()).setMinimum(0);
+       ((SpinnerNumberModel) totalAnak.getModel()).setMinimum(0);
     }
 
     /**
@@ -40,131 +70,36 @@ public class hotelFlight2 extends javax.swing.JFrame {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         materialTabbed1 = new swing.MaterialTabbed();
         flightTicket = new javax.swing.JPanel();
-        departure = new com.toedter.calendar.JDateChooser();
+        departuree = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
         returnDate = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        seatClass = new swing.Combobox();
-        from = new swing.Combobox();
-        to = new swing.Combobox();
+        totalAnak = new javax.swing.JSpinner();
+        Dewasa = new javax.swing.JSpinner();
+        seatClasss = new swing.Combobox();
+        fromm = new swing.Combobox();
+        too = new swing.Combobox();
         jLabel24 = new javax.swing.JLabel();
         button11 = new swing.Button();
-        flightTicket2 = new javax.swing.JPanel();
-        departure2 = new com.toedter.calendar.JDateChooser();
-        jLabel25 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        returnDate2 = new com.toedter.calendar.JDateChooser();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jSpinner6 = new javax.swing.JSpinner();
-        seatClass2 = new swing.Combobox();
-        from2 = new swing.Combobox();
-        to2 = new swing.Combobox();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        from3 = new swing.Combobox();
-        from4 = new swing.Combobox();
-        jLabel34 = new javax.swing.JLabel();
-        departure3 = new com.toedter.calendar.JDateChooser();
-        departure4 = new com.toedter.calendar.JDateChooser();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jSpinner7 = new javax.swing.JSpinner();
-        jLabel38 = new javax.swing.JLabel();
-        jSpinner8 = new javax.swing.JSpinner();
-        hotelTicket3 = new javax.swing.JPanel();
-        departure9 = new com.toedter.calendar.JDateChooser();
-        jLabel53 = new javax.swing.JLabel();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        returnDate5 = new com.toedter.calendar.JDateChooser();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jSpinner15 = new javax.swing.JSpinner();
-        jSpinner16 = new javax.swing.JSpinner();
-        seatClass5 = new swing.Combobox();
-        from9 = new swing.Combobox();
-        to5 = new swing.Combobox();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        from10 = new swing.Combobox();
-        from11 = new swing.Combobox();
-        jLabel62 = new javax.swing.JLabel();
-        departure10 = new com.toedter.calendar.JDateChooser();
-        departure11 = new com.toedter.calendar.JDateChooser();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jSpinner17 = new javax.swing.JSpinner();
-        jLabel66 = new javax.swing.JLabel();
-        jSpinner18 = new javax.swing.JSpinner();
-        jLabel67 = new javax.swing.JLabel();
-        button12 = new swing.Button();
+        jLabel9 = new javax.swing.JLabel();
         materialTabbed2 = new swing.MaterialTabbed();
-        hotelTicket = new javax.swing.JPanel();
-        departure8 = new com.toedter.calendar.JDateChooser();
+        hotelTickett = new javax.swing.JPanel();
+        returnDateHot = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        returnDate4 = new com.toedter.calendar.JDateChooser();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jSpinner13 = new javax.swing.JSpinner();
-        jSpinner14 = new javax.swing.JSpinner();
-        seatClass4 = new swing.Combobox();
-        from8 = new swing.Combobox();
-        to4 = new swing.Combobox();
+        anakHot = new javax.swing.JSpinner();
+        dewasaHot = new javax.swing.JSpinner();
         jLabel21 = new javax.swing.JLabel();
         button8 = new swing.Button();
-        hotelTicket2 = new javax.swing.JPanel();
-        departure5 = new com.toedter.calendar.JDateChooser();
-        jLabel39 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        returnDate3 = new com.toedter.calendar.JDateChooser();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jSpinner9 = new javax.swing.JSpinner();
-        jSpinner10 = new javax.swing.JSpinner();
-        seatClass3 = new swing.Combobox();
-        from5 = new swing.Combobox();
-        to3 = new swing.Combobox();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        from6 = new swing.Combobox();
-        from7 = new swing.Combobox();
-        jLabel48 = new javax.swing.JLabel();
-        departure6 = new com.toedter.calendar.JDateChooser();
-        departure7 = new com.toedter.calendar.JDateChooser();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jSpinner11 = new javax.swing.JSpinner();
-        jLabel52 = new javax.swing.JLabel();
-        jSpinner12 = new javax.swing.JSpinner();
-        jLabel22 = new javax.swing.JLabel();
-        button9 = new swing.Button();
+        destinasi = new swing.Combobox();
+        jLabel17 = new javax.swing.JLabel();
+        departureHot = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -203,28 +138,16 @@ public class hotelFlight2 extends javax.swing.JFrame {
         flightTicket.setPreferredSize(new java.awt.Dimension(800, 400));
         flightTicket.setLayout(null);
 
-        departure.setBackground(new java.awt.Color(255, 255, 255));
-        departure.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        flightTicket.add(departure);
-        departure.setBounds(41, 120, 200, 33);
+        departuree.setBackground(new java.awt.Color(255, 255, 255));
+        departuree.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        flightTicket.add(departuree);
+        departuree.setBounds(41, 120, 200, 33);
 
         jLabel3.setBackground(new java.awt.Color(51, 204, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Departure Date");
         flightTicket.add(jLabel3);
         jLabel3.setBounds(41, 91, 116, 23);
-
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton1.setText("Return Date");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        flightTicket.add(jRadioButton1);
-        jRadioButton1.setBounds(275, 92, 100, 21);
 
         returnDate.setBackground(new java.awt.Color(255, 255, 255));
         returnDate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -233,78 +156,73 @@ public class hotelFlight2 extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(51, 204, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Seat Class");
         flightTicket.add(jLabel4);
         jLabel4.setBounds(510, 90, 116, 23);
 
         jLabel5.setBackground(new java.awt.Color(51, 204, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("To");
         flightTicket.add(jLabel5);
         jLabel5.setBounds(275, 20, 116, 23);
 
         jLabel6.setBackground(new java.awt.Color(51, 204, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Child");
         flightTicket.add(jLabel6);
         jLabel6.setBounds(280, 170, 116, 23);
 
         jLabel7.setBackground(new java.awt.Color(51, 204, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("From");
         flightTicket.add(jLabel7);
         jLabel7.setBounds(41, 20, 116, 23);
 
         jLabel8.setBackground(new java.awt.Color(51, 204, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Adult");
         flightTicket.add(jLabel8);
         jLabel8.setBounds(40, 170, 116, 23);
-        flightTicket.add(jSpinner1);
-        jSpinner1.setBounds(280, 206, 210, 30);
-        flightTicket.add(jSpinner2);
-        jSpinner2.setBounds(40, 206, 200, 30);
+        flightTicket.add(totalAnak);
+        totalAnak.setBounds(280, 206, 210, 30);
+        flightTicket.add(Dewasa);
+        Dewasa.setBounds(40, 206, 200, 30);
 
-        seatClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        seatClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
-        seatClass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        seatClass.setLabeText("");
-        seatClass.addActionListener(new java.awt.event.ActionListener() {
+        seatClasss.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        seatClasss.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
+        seatClasss.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        seatClasss.setLabeText("");
+        seatClasss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatClassActionPerformed(evt);
+                seatClasssActionPerformed(evt);
             }
         });
-        flightTicket.add(seatClass);
-        seatClass.setBounds(510, 120, 208, 34);
+        flightTicket.add(seatClasss);
+        seatClasss.setBounds(510, 120, 208, 34);
 
-        from.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from.setLabeText("");
-        from.addActionListener(new java.awt.event.ActionListener() {
+        fromm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        fromm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
+        fromm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        fromm.setLabeText("");
+        fromm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fromActionPerformed(evt);
+                frommActionPerformed(evt);
             }
         });
-        flightTicket.add(from);
-        from.setBounds(40, 50, 200, 34);
+        flightTicket.add(fromm);
+        fromm.setBounds(40, 50, 200, 34);
 
-        to.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        to.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
-        to.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        to.setLabeText("");
-        to.addActionListener(new java.awt.event.ActionListener() {
+        too.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        too.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
+        too.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        too.setLabeText("");
+        too.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toActionPerformed(evt);
+                tooActionPerformed(evt);
             }
         });
-        flightTicket.add(to);
-        to.setBounds(270, 50, 200, 34);
+        flightTicket.add(too);
+        too.setBounds(270, 50, 200, 34);
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         jLabel24.setPreferredSize(new java.awt.Dimension(45, 45));
@@ -323,432 +241,12 @@ public class hotelFlight2 extends javax.swing.JFrame {
         flightTicket.add(button11);
         button11.setBounds(520, 200, 190, 39);
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Return Date");
+        flightTicket.add(jLabel9);
+        jLabel9.setBounds(280, 90, 90, 20);
+
         materialTabbed1.addTab("FLIGHTS", flightTicket);
-
-        flightTicket2.setBackground(new java.awt.Color(255, 255, 255));
-        flightTicket2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 204, 255), 4, true));
-        flightTicket2.setPreferredSize(new java.awt.Dimension(800, 400));
-        flightTicket2.setLayout(null);
-
-        departure2.setBackground(new java.awt.Color(255, 255, 255));
-        departure2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        flightTicket2.add(departure2);
-        departure2.setBounds(420, 340, 140, 33);
-
-        jLabel25.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Check Out");
-        flightTicket2.add(jLabel25);
-        jLabel25.setBounds(420, 310, 116, 23);
-
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("Return Date");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(jRadioButton3);
-        jRadioButton3.setBounds(280, 130, 100, 21);
-
-        returnDate2.setBackground(new java.awt.Color(255, 255, 255));
-        returnDate2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        flightTicket2.add(returnDate2);
-        returnDate2.setBounds(280, 150, 210, 33);
-
-        jLabel26.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Seat Class");
-        flightTicket2.add(jLabel26);
-        jLabel26.setBounds(510, 120, 116, 23);
-
-        jLabel27.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("To");
-        flightTicket2.add(jLabel27);
-        jLabel27.setBounds(280, 50, 116, 23);
-
-        jLabel28.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel28.setText("Child");
-        flightTicket2.add(jLabel28);
-        jLabel28.setBounds(280, 200, 116, 23);
-
-        jLabel29.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel29.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel29.setText("------------------------------------------------------------------------------------------------------------------------------------------------");
-        flightTicket2.add(jLabel29);
-        jLabel29.setBounds(20, 260, 700, 23);
-
-        jLabel30.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel30.setText("Adult");
-        flightTicket2.add(jLabel30);
-        jLabel30.setBounds(40, 200, 116, 23);
-        flightTicket2.add(jSpinner5);
-        jSpinner5.setBounds(280, 220, 210, 30);
-        flightTicket2.add(jSpinner6);
-        jSpinner6.setBounds(40, 220, 200, 30);
-
-        seatClass2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        seatClass2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
-        seatClass2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        seatClass2.setLabeText("");
-        seatClass2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatClass2ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(seatClass2);
-        seatClass2.setBounds(510, 150, 208, 34);
-
-        from2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)", "Bangka (PGK)", "Lombok (LOP)" }));
-        from2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from2.setLabeText("");
-        from2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from2ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(from2);
-        from2.setBounds(40, 340, 200, 34);
-
-        to2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        to2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
-        to2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        to2.setLabeText("");
-        to2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                to2ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(to2);
-        to2.setBounds(280, 80, 200, 34);
-
-        jLabel31.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel31.setText("Destination or City");
-        flightTicket2.add(jLabel31);
-        jLabel31.setBounds(40, 310, 116, 23);
-
-        jLabel32.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel32.setText("Hotel Details");
-        flightTicket2.add(jLabel32);
-        jLabel32.setBounds(40, 280, 116, 23);
-
-        jLabel33.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel33.setText("Flight Details");
-        flightTicket2.add(jLabel33);
-        jLabel33.setBounds(40, 20, 116, 23);
-
-        from3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from3.setLabeText("");
-        from3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from3ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(from3);
-        from3.setBounds(40, 80, 200, 34);
-
-        from4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from4.setLabeText("");
-        from4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from4ActionPerformed(evt);
-            }
-        });
-        flightTicket2.add(from4);
-        from4.setBounds(40, 80, 200, 34);
-
-        jLabel34.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel34.setText("From");
-        flightTicket2.add(jLabel34);
-        jLabel34.setBounds(40, 50, 116, 23);
-
-        departure3.setBackground(new java.awt.Color(255, 255, 255));
-        departure3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        flightTicket2.add(departure3);
-        departure3.setBounds(40, 150, 200, 33);
-
-        departure4.setBackground(new java.awt.Color(255, 255, 255));
-        departure4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        flightTicket2.add(departure4);
-        departure4.setBounds(270, 340, 140, 33);
-
-        jLabel35.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel35.setText("Departure Date");
-        flightTicket2.add(jLabel35);
-        jLabel35.setBounds(40, 130, 116, 23);
-
-        jLabel36.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel36.setText("Check In");
-        flightTicket2.add(jLabel36);
-        jLabel36.setBounds(270, 310, 116, 23);
-
-        jLabel37.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel37.setText("Guests");
-        flightTicket2.add(jLabel37);
-        jLabel37.setBounds(570, 310, 40, 23);
-        flightTicket2.add(jSpinner7);
-        jSpinner7.setBounds(570, 340, 70, 30);
-
-        jLabel38.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel38.setText("Rooms");
-        flightTicket2.add(jLabel38);
-        jLabel38.setBounds(660, 310, 40, 23);
-        flightTicket2.add(jSpinner8);
-        jSpinner8.setBounds(650, 340, 70, 30);
-
-        hotelTicket3.setBackground(new java.awt.Color(255, 255, 255));
-        hotelTicket3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 204, 255), 4, true));
-        hotelTicket3.setPreferredSize(new java.awt.Dimension(800, 400));
-        hotelTicket3.setLayout(null);
-
-        departure9.setBackground(new java.awt.Color(255, 255, 255));
-        departure9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket3.add(departure9);
-        departure9.setBounds(420, 340, 140, 33);
-
-        jLabel53.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel53.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel53.setText("Check Out");
-        hotelTicket3.add(jLabel53);
-        jLabel53.setBounds(420, 310, 116, 23);
-
-        jRadioButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton6.setText("Return Date");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(jRadioButton6);
-        jRadioButton6.setBounds(280, 130, 100, 21);
-
-        returnDate5.setBackground(new java.awt.Color(255, 255, 255));
-        returnDate5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket3.add(returnDate5);
-        returnDate5.setBounds(280, 150, 210, 33);
-
-        jLabel54.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel54.setText("Seat Class");
-        hotelTicket3.add(jLabel54);
-        jLabel54.setBounds(510, 120, 116, 23);
-
-        jLabel55.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel55.setText("To");
-        hotelTicket3.add(jLabel55);
-        jLabel55.setBounds(280, 50, 116, 23);
-
-        jLabel56.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel56.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel56.setText("Child");
-        hotelTicket3.add(jLabel56);
-        jLabel56.setBounds(280, 200, 116, 23);
-
-        jLabel57.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel57.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel57.setText("------------------------------------------------------------------------------------------------------------------------------------------------");
-        hotelTicket3.add(jLabel57);
-        jLabel57.setBounds(20, 260, 700, 23);
-
-        jLabel58.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel58.setText("Adult");
-        hotelTicket3.add(jLabel58);
-        jLabel58.setBounds(40, 200, 116, 23);
-        hotelTicket3.add(jSpinner15);
-        jSpinner15.setBounds(280, 220, 210, 30);
-        hotelTicket3.add(jSpinner16);
-        jSpinner16.setBounds(40, 220, 200, 30);
-
-        seatClass5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        seatClass5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
-        seatClass5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        seatClass5.setLabeText("");
-        seatClass5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatClass5ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(seatClass5);
-        seatClass5.setBounds(510, 150, 208, 34);
-
-        from9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)", "Bangka (PGK)", "Lombok (LOP)" }));
-        from9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from9.setLabeText("");
-        from9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from9ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(from9);
-        from9.setBounds(40, 340, 200, 34);
-
-        to5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        to5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
-        to5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        to5.setLabeText("");
-        to5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                to5ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(to5);
-        to5.setBounds(280, 80, 200, 34);
-
-        jLabel59.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel59.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel59.setText("Destination or City");
-        hotelTicket3.add(jLabel59);
-        jLabel59.setBounds(40, 310, 116, 23);
-
-        jLabel60.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel60.setText("Hotel Details");
-        hotelTicket3.add(jLabel60);
-        jLabel60.setBounds(40, 280, 116, 23);
-
-        jLabel61.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel61.setText("Flight Details");
-        hotelTicket3.add(jLabel61);
-        jLabel61.setBounds(40, 20, 116, 23);
-
-        from10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from10.setLabeText("");
-        from10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from10ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(from10);
-        from10.setBounds(40, 80, 200, 34);
-
-        from11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from11.setLabeText("");
-        from11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from11ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(from11);
-        from11.setBounds(40, 80, 200, 34);
-
-        jLabel62.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel62.setText("From");
-        hotelTicket3.add(jLabel62);
-        jLabel62.setBounds(40, 50, 116, 23);
-
-        departure10.setBackground(new java.awt.Color(255, 255, 255));
-        departure10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket3.add(departure10);
-        departure10.setBounds(40, 150, 200, 33);
-
-        departure11.setBackground(new java.awt.Color(255, 255, 255));
-        departure11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket3.add(departure11);
-        departure11.setBounds(270, 340, 140, 33);
-
-        jLabel63.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel63.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel63.setText("Departure Date");
-        hotelTicket3.add(jLabel63);
-        jLabel63.setBounds(40, 130, 116, 23);
-
-        jLabel64.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel64.setText("Check In");
-        hotelTicket3.add(jLabel64);
-        jLabel64.setBounds(270, 310, 116, 23);
-
-        jLabel65.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel65.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel65.setText("Guests");
-        hotelTicket3.add(jLabel65);
-        jLabel65.setBounds(570, 310, 40, 23);
-        hotelTicket3.add(jSpinner17);
-        jSpinner17.setBounds(570, 340, 70, 30);
-
-        jLabel66.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel66.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel66.setText("Rooms");
-        hotelTicket3.add(jLabel66);
-        jLabel66.setBounds(660, 310, 40, 23);
-        hotelTicket3.add(jSpinner18);
-        jSpinner18.setBounds(650, 340, 70, 30);
-
-        jLabel67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        jLabel67.setPreferredSize(new java.awt.Dimension(45, 45));
-        hotelTicket3.add(jLabel67);
-        jLabel67.setBounds(510, 210, 40, 40);
-
-        button12.setBackground(new java.awt.Color(0, 153, 255));
-        button12.setForeground(new java.awt.Color(255, 255, 255));
-        button12.setText("SEARCH FLIGHTS + HOTELS");
-        button12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        button12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        button12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button12ActionPerformed(evt);
-            }
-        });
-        hotelTicket3.add(button12);
-        button12.setBounds(510, 210, 230, 39);
-
-        flightTicket2.add(hotelTicket3);
-        hotelTicket3.setBounds(0, 0, 750, 400);
-
-        materialTabbed1.addTab("FLIGHT + HOTEL", flightTicket2);
 
         materialTabbed2.setForeground(new java.awt.Color(255, 255, 255));
         materialTabbed2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -764,353 +262,85 @@ public class hotelFlight2 extends javax.swing.JFrame {
             }
         });
 
-        hotelTicket.setBackground(new java.awt.Color(255, 255, 255));
-        hotelTicket.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 204, 255), 4, true));
-        hotelTicket.setPreferredSize(new java.awt.Dimension(800, 400));
-        hotelTicket.setLayout(null);
+        hotelTickett.setBackground(new java.awt.Color(255, 255, 255));
+        hotelTickett.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 204, 255), 4, true));
+        hotelTickett.setPreferredSize(new java.awt.Dimension(800, 400));
+        hotelTickett.setLayout(null);
 
-        departure8.setBackground(new java.awt.Color(255, 255, 255));
-        departure8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket.add(departure8);
-        departure8.setBounds(41, 120, 200, 33);
+        returnDateHot.setBackground(new java.awt.Color(255, 255, 255));
+        returnDateHot.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        hotelTickett.add(returnDateHot);
+        returnDateHot.setBounds(280, 120, 200, 33);
 
         jLabel15.setBackground(new java.awt.Color(51, 204, 255));
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Departure Date");
-        hotelTicket.add(jLabel15);
+        jLabel15.setText("Check-in :");
+        hotelTickett.add(jLabel15);
         jLabel15.setBounds(41, 91, 116, 23);
-
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton5.setText("Return Date");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
-            }
-        });
-        hotelTicket.add(jRadioButton5);
-        jRadioButton5.setBounds(275, 92, 100, 21);
-
-        returnDate4.setBackground(new java.awt.Color(255, 255, 255));
-        returnDate4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket.add(returnDate4);
-        returnDate4.setBounds(276, 120, 210, 33);
-
-        jLabel16.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Seat Class");
-        hotelTicket.add(jLabel16);
-        jLabel16.setBounds(510, 90, 116, 23);
-
-        jLabel17.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("To");
-        hotelTicket.add(jLabel17);
-        jLabel17.setBounds(275, 20, 116, 23);
 
         jLabel18.setBackground(new java.awt.Color(51, 204, 255));
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Child");
-        hotelTicket.add(jLabel18);
+        hotelTickett.add(jLabel18);
         jLabel18.setBounds(280, 170, 116, 23);
 
         jLabel19.setBackground(new java.awt.Color(51, 204, 255));
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("From");
-        hotelTicket.add(jLabel19);
+        jLabel19.setText("Destiination or City");
+        hotelTickett.add(jLabel19);
         jLabel19.setBounds(41, 20, 116, 23);
 
         jLabel20.setBackground(new java.awt.Color(51, 204, 255));
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Adult");
-        hotelTicket.add(jLabel20);
+        hotelTickett.add(jLabel20);
         jLabel20.setBounds(40, 170, 116, 23);
-        hotelTicket.add(jSpinner13);
-        jSpinner13.setBounds(280, 206, 210, 30);
-        hotelTicket.add(jSpinner14);
-        jSpinner14.setBounds(40, 206, 200, 30);
-
-        seatClass4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        seatClass4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
-        seatClass4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        seatClass4.setLabeText("");
-        seatClass4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatClass4ActionPerformed(evt);
-            }
-        });
-        hotelTicket.add(seatClass4);
-        seatClass4.setBounds(510, 120, 208, 34);
-
-        from8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from8.setLabeText("");
-        from8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from8ActionPerformed(evt);
-            }
-        });
-        hotelTicket.add(from8);
-        from8.setBounds(40, 50, 200, 34);
-
-        to4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        to4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
-        to4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        to4.setLabeText("");
-        to4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                to4ActionPerformed(evt);
-            }
-        });
-        hotelTicket.add(to4);
-        to4.setBounds(270, 50, 200, 34);
+        hotelTickett.add(anakHot);
+        anakHot.setBounds(280, 206, 210, 30);
+        hotelTickett.add(dewasaHot);
+        dewasaHot.setBounds(40, 206, 200, 30);
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         jLabel21.setPreferredSize(new java.awt.Dimension(45, 45));
-        hotelTicket.add(jLabel21);
+        hotelTickett.add(jLabel21);
         jLabel21.setBounds(530, 200, 40, 40);
 
         button8.setBackground(new java.awt.Color(0, 153, 255));
         button8.setForeground(new java.awt.Color(255, 255, 255));
-        button8.setText("SEARCH FLIGHTS");
+        button8.setText("SEARCH HOTEL");
         button8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button8ActionPerformed(evt);
             }
         });
-        hotelTicket.add(button8);
-        button8.setBounds(520, 200, 190, 39);
+        hotelTickett.add(button8);
+        button8.setBounds(530, 200, 190, 39);
 
-        materialTabbed2.addTab("HOTELS", hotelTicket);
-
-        hotelTicket2.setBackground(new java.awt.Color(255, 255, 255));
-        hotelTicket2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 204, 255), 4, true));
-        hotelTicket2.setPreferredSize(new java.awt.Dimension(800, 400));
-        hotelTicket2.setLayout(null);
-
-        departure5.setBackground(new java.awt.Color(255, 255, 255));
-        departure5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket2.add(departure5);
-        departure5.setBounds(420, 340, 140, 33);
-
-        jLabel39.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel39.setText("Check Out");
-        hotelTicket2.add(jLabel39);
-        jLabel39.setBounds(420, 310, 116, 23);
-
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton4.setText("Return Date");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        destinasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        destinasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)", "Surabaya (SBY)" }));
+        destinasi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        destinasi.setLabeText("");
+        destinasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                destinasiActionPerformed(evt);
             }
         });
-        hotelTicket2.add(jRadioButton4);
-        jRadioButton4.setBounds(280, 130, 100, 21);
+        hotelTickett.add(destinasi);
+        destinasi.setBounds(40, 50, 200, 34);
 
-        returnDate3.setBackground(new java.awt.Color(255, 255, 255));
-        returnDate3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket2.add(returnDate3);
-        returnDate3.setBounds(280, 150, 210, 33);
+        jLabel17.setBackground(new java.awt.Color(51, 204, 255));
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel17.setText("Check-out :");
+        hotelTickett.add(jLabel17);
+        jLabel17.setBounds(280, 90, 116, 23);
 
-        jLabel40.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel40.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel40.setText("Seat Class");
-        hotelTicket2.add(jLabel40);
-        jLabel40.setBounds(510, 120, 116, 23);
+        departureHot.setBackground(new java.awt.Color(255, 255, 255));
+        departureHot.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        hotelTickett.add(departureHot);
+        departureHot.setBounds(41, 120, 200, 33);
 
-        jLabel41.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel41.setText("To");
-        hotelTicket2.add(jLabel41);
-        jLabel41.setBounds(280, 50, 116, 23);
-
-        jLabel42.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel42.setText("Child");
-        hotelTicket2.add(jLabel42);
-        jLabel42.setBounds(280, 200, 116, 23);
-
-        jLabel43.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel43.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel43.setText("------------------------------------------------------------------------------------------------------------------------------------------------");
-        hotelTicket2.add(jLabel43);
-        jLabel43.setBounds(20, 260, 700, 23);
-
-        jLabel44.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel44.setText("Adult");
-        hotelTicket2.add(jLabel44);
-        jLabel44.setBounds(40, 200, 116, 23);
-        hotelTicket2.add(jSpinner9);
-        jSpinner9.setBounds(280, 220, 210, 30);
-        hotelTicket2.add(jSpinner10);
-        jSpinner10.setBounds(40, 220, 200, 30);
-
-        seatClass3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        seatClass3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economy", "Business", "First" }));
-        seatClass3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        seatClass3.setLabeText("");
-        seatClass3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatClass3ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(seatClass3);
-        seatClass3.setBounds(510, 150, 208, 34);
-
-        from5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)", "Bangka (PGK)", "Lombok (LOP)" }));
-        from5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from5.setLabeText("");
-        from5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from5ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(from5);
-        from5.setBounds(40, 340, 200, 34);
-
-        to3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        to3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bangka (PGK)", "Lombok (LOP)", "Bali (DPS)" }));
-        to3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        to3.setLabeText("");
-        to3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                to3ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(to3);
-        to3.setBounds(280, 80, 200, 34);
-
-        jLabel45.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel45.setText("Destination or City");
-        hotelTicket2.add(jLabel45);
-        jLabel45.setBounds(40, 310, 116, 23);
-
-        jLabel46.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel46.setText("Hotel Details");
-        hotelTicket2.add(jLabel46);
-        jLabel46.setBounds(40, 280, 116, 23);
-
-        jLabel47.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel47.setText("Flight Details");
-        hotelTicket2.add(jLabel47);
-        jLabel47.setBounds(40, 20, 116, 23);
-
-        from6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from6.setLabeText("");
-        from6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from6ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(from6);
-        from6.setBounds(40, 80, 200, 34);
-
-        from7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        from7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakarta (JKT)", "Surabaya (SBY)", "Bali (DPS)" }));
-        from7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        from7.setLabeText("");
-        from7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                from7ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(from7);
-        from7.setBounds(40, 80, 200, 34);
-
-        jLabel48.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel48.setText("From");
-        hotelTicket2.add(jLabel48);
-        jLabel48.setBounds(40, 50, 116, 23);
-
-        departure6.setBackground(new java.awt.Color(255, 255, 255));
-        departure6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket2.add(departure6);
-        departure6.setBounds(40, 150, 200, 33);
-
-        departure7.setBackground(new java.awt.Color(255, 255, 255));
-        departure7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hotelTicket2.add(departure7);
-        departure7.setBounds(270, 340, 140, 33);
-
-        jLabel49.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel49.setText("Departure Date");
-        hotelTicket2.add(jLabel49);
-        jLabel49.setBounds(40, 130, 116, 23);
-
-        jLabel50.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel50.setText("Check In");
-        hotelTicket2.add(jLabel50);
-        jLabel50.setBounds(270, 310, 116, 23);
-
-        jLabel51.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel51.setText("Guests");
-        hotelTicket2.add(jLabel51);
-        jLabel51.setBounds(570, 310, 40, 23);
-        hotelTicket2.add(jSpinner11);
-        jSpinner11.setBounds(570, 340, 70, 30);
-
-        jLabel52.setBackground(new java.awt.Color(51, 204, 255));
-        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel52.setText("Rooms");
-        hotelTicket2.add(jLabel52);
-        jLabel52.setBounds(660, 310, 40, 23);
-        hotelTicket2.add(jSpinner12);
-        jSpinner12.setBounds(650, 340, 70, 30);
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        jLabel22.setPreferredSize(new java.awt.Dimension(45, 45));
-        hotelTicket2.add(jLabel22);
-        jLabel22.setBounds(510, 210, 40, 40);
-
-        button9.setBackground(new java.awt.Color(0, 153, 255));
-        button9.setForeground(new java.awt.Color(255, 255, 255));
-        button9.setText("SEARCH FLIGHTS + HOTELS");
-        button9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        button9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        button9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button9ActionPerformed(evt);
-            }
-        });
-        hotelTicket2.add(button9);
-        button9.setBounds(510, 210, 230, 39);
-
-        materialTabbed2.addTab("FLIGHT + HOTEL", hotelTicket2);
+        materialTabbed2.addTab("HOTELS", hotelTickett);
 
         jLayeredPane2.setLayer(materialTabbed1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(materialTabbed2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1159,7 +389,7 @@ public class hotelFlight2 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(396, 396, 396)
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1172,7 +402,7 @@ public class hotelFlight2 extends javax.swing.JFrame {
                 .addComponent(imageSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1181,7 +411,7 @@ public class hotelFlight2 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1199,63 +429,12 @@ public class hotelFlight2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-        if(jRadioButton1.isSelected()){
-            returnDate.setVisible(true);
-        }else{
-            returnDate.setVisible(false);
-        }
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void seatClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seatClassActionPerformed
-
-    private void fromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fromActionPerformed
-
-    private void toActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toActionPerformed
-
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-        if(jRadioButton1.isSelected()){
-            returnDate.setVisible(true);
-        }else{
-            returnDate.setVisible(false);
-        }
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void seatClass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClass2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seatClass2ActionPerformed
-
-    private void from2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from2ActionPerformed
-
-    private void to2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_to2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_to2ActionPerformed
-
-    private void from3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from3ActionPerformed
-
-    private void from4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from4ActionPerformed
-
     private void materialTabbed1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialTabbed1MouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_materialTabbed1MouseClicked
 
     private void materialTabbed1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_materialTabbed1StateChanged
-  
+        // TODO add your handling code here:
     }//GEN-LAST:event_materialTabbed1StateChanged
 
     private void materialTabbed2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialTabbed2MouseClicked
@@ -1266,90 +445,131 @@ public class hotelFlight2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_materialTabbed2StateChanged
 
-    private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button8ActionPerformed
-
-    private void to4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_to4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_to4ActionPerformed
-
-    private void from8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from8ActionPerformed
-
-    private void seatClass4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClass4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seatClass4ActionPerformed
-
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        // TODO add your handling code here:
-        if(jRadioButton1.isSelected()){
-            returnDate.setVisible(true);
-        }else{
-            returnDate.setVisible(false);
-        }
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
-
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
-    private void seatClass3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClass3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seatClass3ActionPerformed
-
-    private void from5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from5ActionPerformed
-
-    private void to3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_to3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_to3ActionPerformed
-
-    private void from6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from6ActionPerformed
-
-    private void from7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from7ActionPerformed
-
-    private void button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button9ActionPerformed
-
     private void button11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button11ActionPerformed
-        // TODO add your handling code here:
+String a = departuree.getDate().toString();
+String cd = a.substring(24);
+String pattern = "yyyy-MM-dd";
+SimpleDateFormat fm = new SimpleDateFormat(pattern);
+String depaFm =fm.format(departuree.getDate());
+String retFm = fm.format(returnDate.getDate());
+String b = a.substring(8,10);
+String date2 = a.substring(4,7);
+int tes1 = Integer.parseInt(b);
+//if(returnDate.getDate() == null){
+//        if(tes1 >= Integer.parseInt(datepa) && cd.equals("2023") && date2.equalsIgnoreCase(dateNow) && tes1 >= 25){
+//            dispose();
+//        FlightBuy flight = null;
+//        try {
+//            String query = "INSERT INTO flight (from_destination,to_destination,departure_date,return_date,passenger_adults,passengger_childs,seat_class) VALUES(?,?,?,?,?,?,?)";
+//            DatabaseConnection.pst = con.prepareStatement(query);
+//            DatabaseConnection.pst.setString(1, ""+fromm.getSelectedItem());
+//            DatabaseConnection.pst.setString(2, ""+too.getSelectedItem());
+//            DatabaseConnection.pst.setString(3, depaFm);
+//            if(returnDate.getDate() == null){
+//            DatabaseConnection.pst.setString(4, retFm);
+//                
+//            }
+//            DatabaseConnection.pst.setString(5, ""+Dewasa.getValue());
+//            DatabaseConnection.pst.setString(6, ""+totalAnak.getValue());
+//            DatabaseConnection.pst.setString(7, ""+seatClasss.getSelectedItem());
+//            DatabaseConnection.pst.execute();
+//        
+//            flight = new FlightBuy();
+//            flight.setVisible(true);
+//        } catch (ParseException | SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//    }else{
+//        JOptionPane.showMessageDialog(null, "Tolong Masukan Form Pemberangkatan Dengan Tahun Dan Bulan Saat Ini");         
+//    }
+//}else{
+    String c = returnDate.getDate().toString();
+    String d = c.substring(8,10);
+    String dc = c.substring(24);
+    String date = c.substring(4,7);
+    int tes = Integer.parseInt(d);
+        if(tes1 >= Integer.parseInt(datepa) && dc.equals("2023") && cd.equals("2023") && date.equalsIgnoreCase(dateNow) && date2.equalsIgnoreCase(dateNow) && tes >= tes1){
+            FlightBuy flight;
+        try {
+            String query = "INSERT INTO flight (from_destination,to_destination,departure_date,return_date,passenger_adults,passengger_childs,seat_class) VALUES(?,?,?,?,?,?,?)";
+            DatabaseConnection.pst = con.prepareStatement(query);
+            DatabaseConnection.pst.setString(1, ""+fromm.getSelectedItem());
+            DatabaseConnection.pst.setString(2, ""+too.getSelectedItem());
+            DatabaseConnection.pst.setString(3, depaFm);
+            DatabaseConnection.pst.setString(4, retFm);
+            DatabaseConnection.pst.setString(5, ""+Dewasa.getValue());
+            DatabaseConnection.pst.setString(6, ""+totalAnak.getValue());
+            DatabaseConnection.pst.setString(7, ""+seatClasss.getSelectedItem());
+            DatabaseConnection.pst.execute();
+        
+            flight = new FlightBuy();
+            flight.setVisible(true);
+        } catch (ParseException | SQLException ex) {
+             ex.printStackTrace();
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Tolong Masukan Form Pemberangkatan Dengan Tahun Dan Bulan Saat Ini");         
+        }
+//    }
     }//GEN-LAST:event_button11ActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void tooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tooActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_tooActionPerformed
 
-    private void seatClass5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClass5ActionPerformed
+    private void frommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frommActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_seatClass5ActionPerformed
+    }//GEN-LAST:event_frommActionPerformed
 
-    private void from9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from9ActionPerformed
+    private void seatClasssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatClasssActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_from9ActionPerformed
+    }//GEN-LAST:event_seatClasssActionPerformed
 
-    private void to5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_to5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_to5ActionPerformed
+    private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
+    String a = departureHot.getDate().toString();
+    String cd = a.substring(24);
+    String b = a.substring(8,10);
+    String date2 = a.substring(4,7);
+    String pattern = "yyyy-MM-dd";
+    SimpleDateFormat fm = new SimpleDateFormat(pattern);
+    String depaFm =fm.format(departureHot.getDate());
+    String retFm = fm.format(returnDateHot.getDate());
+    int tes1 = Integer.parseInt(b);
+        if(returnDateHot.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Harap memasukan form return date");         
+        }else{
+            String c = returnDateHot.getDate().toString();
+            String d = c.substring(8,10);
+            String dc = c.substring(24);
+            String date = c.substring(4,7);
+            int tes = Integer.parseInt(d);
+                if(tes1 >= Integer.parseInt(datepa) && dc.equals("2023") && cd.equals("2023") && date.equalsIgnoreCase(dateNow) && date2.equalsIgnoreCase(dateNow) && tes > tes1){
+                    dispose();
+                    HotelBuy hotel;
+                try {
+                    String query = "INSERT INTO hotel (destinasi,checkin,checkout,guest_adult,guest_child) VALUES(?,?,?,?,?)";
+                    DatabaseConnection.pst = con.prepareStatement(query);
+                    DatabaseConnection.pst.setString(1, ""+destinasi.getSelectedItem());
+                    DatabaseConnection.pst.setString(2, depaFm);
+                    DatabaseConnection.pst.setString(3, retFm);
+                    DatabaseConnection.pst.setString(4, ""+dewasaHot.getValue());
+                    DatabaseConnection.pst.setString(5, ""+anakHot.getValue());
+                    DatabaseConnection.pst.execute();
+        
+                    hotel = new HotelBuy();
+                    hotel.setVisible(true);
+                } catch (ParseException | SQLException ex) {
+                   ex.printStackTrace();
+                }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Tolong Masukan Form Pemberangkatan Dengan Tahun Dan Bulan Saat Ini");         
+                }
+            }
+    }//GEN-LAST:event_button8ActionPerformed
 
-    private void from10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from10ActionPerformed
+    private void destinasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinasiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_from10ActionPerformed
-
-    private void from11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_from11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_from11ActionPerformed
-
-    private void button12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button12ActionPerformed
+    }//GEN-LAST:event_destinasiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1384,8 +604,20 @@ public class hotelFlight2 extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
+        try {
+            DatabaseConnection.getInstance().connectToDatabase();
+        } catch (Exception e) {
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new hotelFlight2().setVisible(true);
@@ -1394,137 +626,42 @@ public class hotelFlight2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JSpinner Dewasa;
+    public static javax.swing.JSpinner anakHot;
     private swing.Button button11;
-    private swing.Button button12;
     private swing.Button button8;
-    private swing.Button button9;
-    private com.toedter.calendar.JDateChooser departure;
-    private com.toedter.calendar.JDateChooser departure10;
-    private com.toedter.calendar.JDateChooser departure11;
-    private com.toedter.calendar.JDateChooser departure2;
-    private com.toedter.calendar.JDateChooser departure3;
-    private com.toedter.calendar.JDateChooser departure4;
-    private com.toedter.calendar.JDateChooser departure5;
-    private com.toedter.calendar.JDateChooser departure6;
-    private com.toedter.calendar.JDateChooser departure7;
-    private com.toedter.calendar.JDateChooser departure8;
-    private com.toedter.calendar.JDateChooser departure9;
+    public static com.toedter.calendar.JDateChooser departureHot;
+    public static com.toedter.calendar.JDateChooser departuree;
+    public static swing.Combobox destinasi;
+    public static javax.swing.JSpinner dewasaHot;
     private javax.swing.JPanel flightTicket;
-    private javax.swing.JPanel flightTicket2;
-    private swing.Combobox from;
-    private swing.Combobox from10;
-    private swing.Combobox from11;
-    private swing.Combobox from2;
-    private swing.Combobox from3;
-    private swing.Combobox from4;
-    private swing.Combobox from5;
-    private swing.Combobox from6;
-    private swing.Combobox from7;
-    private swing.Combobox from8;
-    private swing.Combobox from9;
-    private javax.swing.JPanel hotelTicket;
-    private javax.swing.JPanel hotelTicket2;
-    private javax.swing.JPanel hotelTicket3;
+    public static swing.Combobox fromm;
+    public static javax.swing.JPanel hotelTickett;
     private test.ImageSlider imageSlider1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane2;
     public static javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner10;
-    private javax.swing.JSpinner jSpinner11;
-    private javax.swing.JSpinner jSpinner12;
-    private javax.swing.JSpinner jSpinner13;
-    private javax.swing.JSpinner jSpinner14;
-    private javax.swing.JSpinner jSpinner15;
-    private javax.swing.JSpinner jSpinner16;
-    private javax.swing.JSpinner jSpinner17;
-    private javax.swing.JSpinner jSpinner18;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
-    private javax.swing.JSpinner jSpinner9;
     public static swing.MaterialTabbed materialTabbed1;
     public static swing.MaterialTabbed materialTabbed2;
     private com.toedter.calendar.JDateChooser returnDate;
-    private com.toedter.calendar.JDateChooser returnDate2;
-    private com.toedter.calendar.JDateChooser returnDate3;
-    private com.toedter.calendar.JDateChooser returnDate4;
-    private com.toedter.calendar.JDateChooser returnDate5;
-    private swing.Combobox seatClass;
-    private swing.Combobox seatClass2;
-    private swing.Combobox seatClass3;
-    private swing.Combobox seatClass4;
-    private swing.Combobox seatClass5;
-    private swing.Combobox to;
-    private swing.Combobox to2;
-    private swing.Combobox to3;
-    private swing.Combobox to4;
-    private swing.Combobox to5;
+    public static com.toedter.calendar.JDateChooser returnDateHot;
+    public static swing.Combobox seatClasss;
+    public static swing.Combobox too;
+    public static javax.swing.JSpinner totalAnak;
     // End of variables declaration//GEN-END:variables
 }

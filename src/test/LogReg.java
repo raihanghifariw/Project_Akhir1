@@ -323,7 +323,7 @@ public class LogReg extends javax.swing.JFrame{
         FlatIntelliJLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new splashscreen.SplashScreen(null, true).setVisible(true);
+                new splashscreen.SplashScreen(null, true).setVisible(true);
                 new LogReg().setVisible(true);
             }
         });
